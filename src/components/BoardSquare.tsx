@@ -1,14 +1,14 @@
-import * as React from "react";
-import {Game} from "../Game";
-import {Square} from "./Square";
-import {DropTarget, DropTargetSpec, DropTargetCollector, ConnectDropTarget} from "react-dnd";
-import {ItemTypes} from "../Constants";
+import * as React from 'react';
+import { Game } from '../Game';
+import { Square } from './Square';
+import { DropTarget, DropTargetSpec, DropTargetCollector, ConnectDropTarget } from 'react-dnd';
+import { ItemTypes } from '../Constants';
 
 const squareTarget: DropTargetSpec<BoardSquareProps> = {
-    canDrop(props) {
+    canDrop(props: BoardSquareProps) {
         return props.game.canMoveKnight(props.x, props.y);
     },
-      drop(props) {
+      drop(props: BoardSquareProps) {
         props.game.moveKnight(props.x, props.y);
       }
 };
@@ -34,16 +34,18 @@ class BoardSquare extends React.Component<BoardSquareProps, {}> {
 
     renderOverlay(color: string) {
         return (
-            <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        height: '100%',
-        width: '100%',
-        zIndex: 1,
-        opacity: 0.5,
-        backgroundColor: color,
-      }} />
+            <div
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    height: '100%',
+                    width: '100%',
+                    zIndex: 1,
+                    opacity: 0.5,
+                    backgroundColor: color,
+                }}
+            />
         );
     }
 
@@ -52,7 +54,7 @@ class BoardSquare extends React.Component<BoardSquareProps, {}> {
         const black = (x + y) % 2 === 1;
 
         return connectDropTarget(
-            <div style={{ position: 'relative', width: "100%", height: "100%" }}>
+            <div style={{ position: 'relative', width: '100%', height: '100%' }}>
                 <Square black={black}>
                     {this.props.children}
                 </Square>
