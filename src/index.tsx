@@ -1,11 +1,9 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import Board from "./components/Board";
+import {Game} from "./Game";
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
+    <Board game={new Game()} />,
+    document.getElementById("root")
 );
-registerServiceWorker();
