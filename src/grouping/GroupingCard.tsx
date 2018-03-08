@@ -1,21 +1,30 @@
 import * as React from 'react';
 import TeamCard from '../team/TeamCard';
-import { Grouping } from './Grouping';
-import { Card, CardHeader } from 'material-ui';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
+import GroupingContext from './GroupingContext';
+import { observer } from 'mobx-react';
 
 interface GroupingProps {
-    grouping: Grouping;
+    context: GroupingContext;
 }
 
-export default class GroupingCard extends React.Component<GroupingProps, {}> {
+@observer
+class GroupingCard extends React.Component<GroupingProps, {}> {
     render() {
-        const { grouping } = this.props;
-        const teamCards = grouping.teams.map(team => <TeamCard key={team.id} team={team} />);
+        const { context } = this.props;
+        const teamCards =
+            context.grouping.teams.map(team => {
+                return (
+                    <TeamCard key={team.id} team={team} context={context} />
+                );
+            });
         return (
-            <Card>
-                <CardHeader title={'Grouping'}/>
+            <div>
                 {teamCards}
-            </Card>
+            </div>
         );
     }
 }
+
+export default DragDropContext(HTML5Backend)(GroupingCard);

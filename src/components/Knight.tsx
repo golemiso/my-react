@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ConnectDragSource, DragSource, DragSourceCollector, DragSourceSpec } from 'react-dnd';
-import { ItemTypes } from '../Constants';
+import { ItemTypes } from '../app/common/Constants';
 
 const knightSource: DragSourceSpec<KnightProps> = {
     beginDrag(props: KnightProps) {

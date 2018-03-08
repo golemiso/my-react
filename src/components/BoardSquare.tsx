@@ -2,7 +2,7 @@ import * as React from 'react';
 import Game from '../Game';
 import Square from './Square';
 import { ConnectDropTarget, DropTarget, DropTargetCollector, DropTargetSpec } from 'react-dnd';
-import { ItemTypes } from '../Constants';
+import { ItemTypes } from '../app/common/Constants';
 
 const squareTarget: DropTargetSpec<BoardSquareProps> = {
     canDrop(props: BoardSquareProps) {
