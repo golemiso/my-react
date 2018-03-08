@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PlayerCard from '../player/PlayerCard';
 import { Team } from './Team';
+import { Card, CardHeader, List } from 'material-ui';
 
 interface TeamProps {
     key: string;
@@ -12,9 +13,12 @@ export default class TeamCard extends React.Component<TeamProps, {}> {
         const { team } = this.props;
         const playerCards = team.players.map(player => <PlayerCard key={player.id} player={player} />);
         return (
-            <div className={'TeamCard'}>
+            <Card>
+                <CardHeader title={'Team'}/>
+                <List>
                 {playerCards}
-            </div>
+                </List>
+            </Card>
         );
     }
 }
