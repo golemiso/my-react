@@ -1,24 +1,24 @@
 import * as React from 'react';
-import { Game } from '../Game';
-import { Square } from './Square';
-import { DropTarget, DropTargetSpec, DropTargetCollector, ConnectDropTarget } from 'react-dnd';
+import Game from '../Game';
+import Square from './Square';
+import { ConnectDropTarget, DropTarget, DropTargetCollector, DropTargetSpec } from 'react-dnd';
 import { ItemTypes } from '../Constants';
 
 const squareTarget: DropTargetSpec<BoardSquareProps> = {
     canDrop(props: BoardSquareProps) {
         return props.game.canMoveKnight(props.x, props.y);
     },
-      drop(props: BoardSquareProps) {
+    drop(props: BoardSquareProps) {
         props.game.moveKnight(props.x, props.y);
-      }
+    }
 };
 
 const collect: DropTargetCollector = (connect, monitor) => {
-  return {
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-      canDrop: monitor.canDrop()
-  };
+    return {
+        connectDropTarget: connect.dropTarget(),
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop()
+    };
 };
 
 export interface BoardSquareProps {
@@ -50,11 +50,11 @@ class BoardSquare extends React.Component<BoardSquareProps, {}> {
     }
 
     render() {
-        const { x, y, connectDropTarget, isOver, canDrop } = this.props;
+        const {x, y, connectDropTarget, isOver, canDrop} = this.props;
         const black = (x + y) % 2 === 1;
 
         return connectDropTarget(
-            <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+            <div style={{position: 'relative', width: '100%', height: '100%'}}>
                 <Square black={black}>
                     {this.props.children}
                 </Square>

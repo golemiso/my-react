@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { Game } from '../Game';
+import Game from '../Game';
 import BoardSquare from './BoardSquare';
 import Knight from './Knight';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-export interface BoardProps {
+interface BoardProps {
     game: Game;
 }
 
+@observer
 class Board extends React.Component<BoardProps, {}> {
     render() {
         const squares = [];
@@ -23,7 +24,8 @@ class Board extends React.Component<BoardProps, {}> {
                     width: '100%',
                     height: '100%',
                     display: 'flex',
-                    flexWrap: 'wrap'}}
+                    flexWrap: 'wrap'
+                }}
             >
                 {squares}
             </div>
@@ -37,7 +39,7 @@ class Board extends React.Component<BoardProps, {}> {
         return (
             <div
                 key={i}
-                style={{ width: '12.5%', height: '12.5%' }}
+                style={{width: '12.5%', height: '12.5%'}}
             >
                 <BoardSquare
                     game={game}
@@ -53,11 +55,11 @@ class Board extends React.Component<BoardProps, {}> {
     renderPiece(x: number, y: number) {
         const [knightX, knightY] = this.props.game.knightPosition;
         if (x === knightX && y === knightY) {
-            return <Knight />;
+            return <Knight/>;
         }
         return '_';
     }
 
 }
 
-export default DragDropContext(HTML5Backend)(observer(Board));
+export default DragDropContext(HTML5Backend)(Board);
