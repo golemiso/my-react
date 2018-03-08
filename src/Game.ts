@@ -2,11 +2,8 @@ import { observable } from 'mobx';
 
 export class Game {
 
-  knightPosition: Array<number>;
-  
-  constructor() {
-    this.knightPosition = observable([1, 7]);
-  }
+  @observable
+  knightPosition = [1, 7];
 
   moveKnight(toX: number, toY: number): void {
     this.knightPosition = [toX, toY];
